@@ -1,4 +1,4 @@
-// GARRY MOVES  transform: scaleX(-1);
+// GARRY MOVES 
 $(document).ready(function(e) {
     
     var width = 1389;
