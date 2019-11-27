@@ -1,7 +1,7 @@
 // GARRY MOVES 
 $(document).ready(function(e) {
     
-    var width = 1389;
+    var width = screen.availWidth - 100;
     
     function goRight() {
         $(".fish1").animate({
