@@ -59,17 +59,30 @@ $(document).ready(function(){
 });
 
 //BUBBLE 2 RANDOM POSITION    
-    function scalebubble() {
-        $(".fish1").css({
+ function toggle(it) {
+  if (".bubble1".width == 800)
+    {".bubble1".width = 8800;}
+  else
+    {".bubble1".width = 1000;}
+};
+/*$(".bubble1").on("click" , function(scalebubble)
+
+
+
+
+  function scalebubble() {
+        $(".bubble1").css({
         "height": "auto",
         "width": "100px"
       } , function() {
-$(this).css({
+$(".bubble1").css({
 		"height": "auto",
 		"width": "120px"
 	});
 });
     }
+    */
+
     
   
 

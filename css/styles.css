@@ -13,9 +13,8 @@ body {
 
 .bubble1
 {
-	width: 80;
+	width: 80px;
 	height: 80px;
-	scale : 150px;
 	position:relative;
 }
 .bubble2
