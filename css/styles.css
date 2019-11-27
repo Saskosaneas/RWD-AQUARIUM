@@ -8,6 +8,25 @@ body {
 	width: 120px;
 	height: 120px;
 	position:relative;
-	top: 626px;
-	
+	top: 626px;	
+}
+
+.bubble1
+{
+	width: 80;
+	height: 80px;
+	scale : 150px;
+	position:relative;
+}
+.bubble2
+{
+	width: 80px;
+	height: 80px;
+	position:relative;
+}
+.bubble3
+{
+	width: 80px;
+	height: 80px;
+	position:relative;
 }
