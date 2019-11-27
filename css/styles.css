@@ -1,0 +1,11 @@
+body {
+	background-image: url("../images/coral-image.jpg");
+	        background-size: cover;
+}
+
+.fish1
+{
+	width: 70px;
+	height: 70px;
+	
+}
