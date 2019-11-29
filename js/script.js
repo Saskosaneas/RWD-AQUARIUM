@@ -1,7 +1,7 @@
 // GARRY MOVES 
 $(document).ready(function(e) {
     
-    var width = 1408;
+    var width = 1391;
     
     function goRight() {
         $(".fish1").animate({
@@ -36,54 +36,58 @@ $(".fish1").click(function() {
 //
 
 
-//BUBBLE 1 RANDOM POSITION
-$(document).ready(function(){
-	bubble_random1();
-});
 
-function bubble_random1(){
-    var width = 900;
-    var height = 626;
-    
-    var x = Math.floor((Math.random() * width) + 1);
-    var y = Math.floor((Math.random() * height) + 1);
-      $( ".bubble1" ).animate({
-    left: x,
-          top: y
-  }, 0, function() {});
-    setTimeout(bubble_random1, 3500);
-}
-//BUBBLE 2 RANDOM POSITION
-$(document).ready(function(){
-	bubble_random2();
-});
 
-//BUBBLE 2 RANDOM POSITION    
- function toggle(it) {
-  if (".bubble1".width == 800)
-    {".bubble1".width = 8800;}
-  else
-    {".bubble1".width = 1000;}
+
+
+
+//BUBBLES MOVE
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-/*$(".bubble1").on("click" , function(scalebubble)
 
-
-
-
-  function scalebubble() {
-        $(".bubble1").css({
-        "height": "auto",
-        "width": "100px"
-      } , function() {
-$(".bubble1").css({
-		"height": "auto",
-		"width": "120px"
-	});
-});
-    }
-    */
-
+function bubblmove(iddereferinta, rate) 
+{
+   var x = getRandom(0, 1400);
+   var y = getRandom(0, 1200); // NOT TO GO OF THE BORDER OF THE SCREEN
+   
+    $(iddereferinta).offset({
+           top: 650 // POSITION WHERE BUBBLE STARTS TO FLEX ;d
+        , left: x
+    });
     
-  
+    $(iddereferinta).animate({
+         left: y
+        , top: -100 
+    }, rate, function () {
+        bubblmove(iddereferinta, rate)
+    });
+}
+$(document).ready(function () {
+    bubblmove(".bubble1", 10000)
+});
+$(document).ready(function () {
+    bubblmove(".bubble2", 9000)
+});
+$(document).ready(function () {
+    bubblmove(".bubble3", 8000)
+});
 
 
+
+
+//SCALING BOBBLES 
+var audio2 = $(".ballon-popup")[0];
+ $(".bubble1").click(function () {
+       audio2.play();
+     $(this).css({"height": "auto", "width": "100px"});
+  }); 
+  $(".bubble2").click(function () {
+       audio2.play();
+     $(this).css({"height": "auto", "width": "100px"});
+  }); 
+   $(".bubble3").click(function () {
+       audio2.play();
+     $(this).css({"height": "auto", "width": "100px"});
+  }); 
+ 
