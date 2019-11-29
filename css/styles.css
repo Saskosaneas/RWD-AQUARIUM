@@ -3,6 +3,15 @@ body {
 	        background-size: cover;
 }
 
+
+
+.fish
+{
+	width: 160px;
+	height: 89px;
+	position:relative;
+}
+
 .fish1
 {
 	width: 120px;

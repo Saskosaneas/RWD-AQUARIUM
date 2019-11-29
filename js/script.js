@@ -1,7 +1,7 @@
 // GARRY MOVES 
 $(document).ready(function(e) {
     
-    var width = 1391;
+    var width = 1227;
     
     function goRight() {
         $(".fish1").animate({
@@ -34,13 +34,6 @@ $(".fish1").click(function() {
     audio.play();
 })
 //
-
-
-
-
-
-
-
 //BUBBLES MOVE
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -72,10 +65,6 @@ $(document).ready(function () {
 $(document).ready(function () {
     bubblmove(".bubble3", 8000)
 });
-
-
-
-
 //SCALING BOBBLES 
 var audio2 = $(".ballon-popup")[0];
  $(".bubble1").click(function () {
@@ -91,3 +80,39 @@ var audio2 = $(".ballon-popup")[0];
      $(this).css({"height": "auto", "width": "100px"});
   }); 
  
+
+
+
+ //FISH  move randomly 
+$(document).ready(function(){
+    animateDiv(".fish")
+});
+
+
+function makeNewPosition()
+{
+    
+    // making the dimensions of the movement ( window size - fish size in pixels )
+    var h = $(window).height() - 89;
+    var w = $(window).width() - 160;
+    
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+    
+    return [nh,nw];    
+    
+}
+
+
+
+function animateDiv(myclass){
+    var newq = makeNewPosition();
+    $(".fish").animate({ top: newq[0], left: newq[1] }, 1000,   function(){
+      animateDiv(myclass);        
+    });
+};
+
+
+
+
+
