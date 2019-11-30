@@ -12,29 +12,43 @@ body {
 	position:relative;
 }
 
+.fish2
+{
+	width: 200px;
+	height: 200px;
+	position:absolute;
+}
+
 .fish1
 {
 	width: 120px;
 	height: 120px;
-	position:relative;
-	top: 627px;	
+	position:absolute;
+	top: 627px;
+	left: 0px;	
 }
 
 .bubble1
 {
 	width: 80px;
 	height: 80px;
-	position:relative;
+	position:absolute;
 }
 .bubble2
 {
 	width: 80px;
 	height: 80px;
-	position:relative;
+	position:absolute;
 }
 .bubble3
 {
 	width: 80px;
 	height: 80px;
-	position:relative;
+	position:absolute;
+}
+
+.fish3
+{
+	width: 1px;
+	height: 1px;
 }

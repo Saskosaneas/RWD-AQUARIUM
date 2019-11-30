@@ -1,7 +1,7 @@
 // GARRY MOVES 
 $(document).ready(function(e) {
     
-    var width = 1227;
+    var width = $(document).width()-120;
     
     function goRight() {
         $(".fish1").animate({
@@ -41,8 +41,8 @@ function getRandom(min, max) {
 
 function bubblmove(iddereferinta, rate) 
 {
-   var x = getRandom(0, 1400);
-   var y = getRandom(0, 1200); // NOT TO GO OF THE BORDER OF THE SCREEN
+  var x = getRandom(0, $(document).width());
+   var y = getRandom(0, $(document).height()); // NOT TO GO OF THE BORDER OF THE SCREEN
    
     $(iddereferinta).offset({
            top: 650 // POSITION WHERE BUBBLE STARTS TO FLEX ;d
@@ -85,7 +85,9 @@ var audio2 = $(".ballon-popup")[0];
 
  //FISH  move randomly 
 $(document).ready(function(){
-    animateDiv(".fish")
+    fishmoves(".fish")
+        fishmoves2(".fish2")
+
 });
 
 
@@ -95,24 +97,95 @@ function makeNewPosition()
     // making the dimensions of the movement ( window size - fish size in pixels )
     var h = $(window).height() - 89;
     var w = $(window).width() - 160;
-    
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
-    
-    return [nh,nw];    
-    
+    return [nh,nw];       
 }
 
+function makeNewPosition2()
+{
+    
+    // making the dimensions of the movement ( window size - fish size in pixels )
+    var h = $(window).height() - 200;
+    var w = $(window).width() - 200;
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+    return [nh,nw];       
+}
 
+function fishmoves2(myclass){
+    var newq = makeNewPosition();
+    $(".fish2").animate({ top: newq[0], left: newq[1] }, 5000,   function(){
+      fishmoves2(myclass);        
+    });
 
-function animateDiv(myclass){
+};
+function fishmoves(myclass){
     var newq = makeNewPosition();
     $(".fish").animate({ top: newq[0], left: newq[1] }, 1000,   function(){
-      animateDiv(myclass);        
+      fishmoves(myclass);        
     });
+
 };
 
 
 
 
+// messing with the fish
+// get direction angle of the point
+  const getFishDirectionDegrees = (originX, originY, targetX, targetY) => {
+    var dx = originX - targetX;
+    var dy = originY - targetY;
+    
+    let theta = Math.atan2(-dy, -dx);
+    theta *= 180 / Math.PI;
+    
+if (theta < 0) theta += 360;
 
+
+    return theta;
+  };
+$(document).click(event => {
+    const { clientX, clientY } = event;
+    const fishImage = $(".fish");
+    
+    const { left: imageLeft, top: imageTop } = fishImage.offset();
+    
+    const left = clientX - fishImage.width() / 2;
+    const top = clientY - fishImage.height() / 2;
+    
+    const degrees = getFishDirectionDegrees(imageLeft, imageTop, left, top);
+    
+
+    fishImage.css({ transform: `rotate(${degrees}deg)` });
+    fishImage.stop(true).animate({ left, top }, 1000, () => {
+      fishmoves(".fish", 6100);
+    });
+  });
+
+// increasing /decfreasing fish dimensions + sounds
+
+
+$(".fish3").fadeOut(1);
+var audio3 = $(".blow-up")[0];
+var audio4 = $(".blow-out")[0];
+
+function increasesize() {
+  $(".fish2").css({"width": "300px", "height":"300px"});
+  $(".fish2").attr('src',"images/flated.png");
+  audio3.play();
+};
+
+function decreasesize() {
+  $(".fish2").css({"width": "200px", "height":"200px"});
+  $(".fish2").attr('src',"images/deflated.png");
+  audio3.play();
+};
+
+ $(".fish2").dblclick(() => {
+    increasesize();
+
+    setTimeout(() => {
+      decreasesize();
+    }, 1000);
+  });
