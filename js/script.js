@@ -122,7 +122,7 @@ function fishmoves2(myclass){
 };
 function fishmoves(myclass){
     var newq = makeNewPosition();
-    $(".fish").animate({ top: newq[0], left: newq[1] }, 1000,   function(){
+    $(".fish").animate({ top: newq[0], left: newq[1] }, 3000,   function(){
       fishmoves(myclass);        
     });
 
@@ -187,5 +187,5 @@ function decreasesize() {
 
     setTimeout(() => {
       decreasesize();
-    }, 1000);
+    }, 2000);
   });
