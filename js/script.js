@@ -10,7 +10,7 @@ $(".fish1").css({"top":$(window).height()-90});
         left: width
       }, 20000, function() {
          setTimeout(goLeft, 50);
-}
+})
 $(this).css("transform","scaleX(-1)");
       });
     }
