@@ -1,16 +1,13 @@
 // GARRY MOVES 
 $(document).ready(function(e) {
+    
     var width = $(document).width()-120;
-
-$(".fish1").css({"top":$(window).height()-90});
-
-
+    
     function goRight() {
         $(".fish1").animate({
         left: width
       }, 20000, function() {
          setTimeout(goLeft, 50);
-}
 $(this).css("transform","scaleX(-1)");
       });
     }
@@ -192,4 +189,3 @@ function decreasesize() {
       decreasesize();
     }, 2000);
   });
-
