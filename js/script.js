@@ -9,7 +9,7 @@ $(document).ready(function(e) {
         left: width
       }, 20000, function() {
          setTimeout(goLeft, 50);
-}
+
 $(this).css("transform","scaleX(-1)");
       });
     }
@@ -44,10 +44,10 @@ function getRandom(min, max) {
 function bubblmove(iddereferinta, rate) 
 {
   var x = getRandom(0, $(document).width());
-   var y = getRandom(0, $(document).height()); // NOT TO GO OF THE BORDER OF THE SCREEN
-   
+   var y = getRandom(0, $(document).height());
+   var z = $(window).height() - 80; //position for bubbles to start from the bottomo of the screen
     $(iddereferinta).offset({
-           top: 650 // POSITION WHERE BUBBLE STARTS TO FLEX ;d
+           top: z // POSITION WHERE BUBBLE STARTS TO FLEX ;d
         , left: x
     });
     
@@ -68,20 +68,25 @@ $(document).ready(function () {
     bubblmove(".bubble3", 8000)
 });
 //SCALING BOBBLES 
+
 var audio2 = $(".ballon-popup")[0];
- $(".bubble1").click(function () {
+ $(".bubble1").click(function popup1() {
        audio2.play();
      $(this).css({"height": "auto", "width": "100px"});
+    
   }); 
-  $(".bubble2").click(function () {
+  $(".bubble2").click(function popup2() {
        audio2.play();
+      
      $(this).css({"height": "auto", "width": "100px"});
   }); 
-   $(".bubble3").click(function () {
+   $(".bubble3").click(function popup3 () {
        audio2.play();
      $(this).css({"height": "auto", "width": "100px"});
+       
   }); 
- 
+
+
 
 
 
@@ -168,7 +173,7 @@ $(document).click(event => {
 // increasing /decfreasing fish dimensions + sounds
 
 
-$(".fish3").fadeOut(1);
+$(".fish3").fadeOut(1); // the image not to be displayed ( used down for  pupper )
 var audio3 = $(".blow-up")[0];
 var audio4 = $(".blow-out")[0];
 
