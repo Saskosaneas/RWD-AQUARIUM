@@ -1,54 +1,47 @@
 body {
+	margin: 0;
+	min-height: 100vh;
+	overflow: hidden;
 	background-image: url("../images/coral-image.jpg");
-	        background-size: cover;
+	background-size: cover;
+	background-position: center;
 }
-
-
 
 .fish
 {
 	width: 160px;
 	height: 89px;
-	position:relative;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .fish2
 {
 	width: 200px;
 	height: 200px;
-	position:absolute;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .fish1
 {
 	width: 120px;
 	height: 120px;
-	position:absolute;
-	top:627px;
-	left: 0px;	
+	position: absolute;
+	bottom: 20px; /* stays on the sea floor at any screen height */
+	left: 0px;
 }
 
-.bubble1
+.bubble
 {
 	width: 80px;
 	height: 80px;
-	position:absolute;
-}
-.bubble2
-{
-	width: 80px;
-	height: 80px;
-	position:absolute;
-}
-.bubble3
-{
-	width: 80px;
-	height: 80px;
-	position:absolute;
+	position: absolute;
 }
 
 .fish3
 {
-	width: 1px;
-	height: 1px;
+	display: none;
 }
