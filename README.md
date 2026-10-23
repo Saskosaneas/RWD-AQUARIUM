@@ -26,4 +26,3 @@ No build steps are required; all assets are static.
 
 ## License
 MIT © Sandut Chilat
-test test test
