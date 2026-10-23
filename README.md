@@ -25,4 +25,4 @@ No build steps are required; all assets are static.
 - `audio/` – Sound files used in the demo.
 
 ## License
-MIT © Your Name
+MIT © Sandut Chilat
