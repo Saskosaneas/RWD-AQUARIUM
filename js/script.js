@@ -108,7 +108,7 @@ $(document).ready(function () {
 
   $(document).click(event => {
     // clicks on Gary, bubbles or the pufferfish have their own behaviour
-    if ($(event.target).closest(".fish1, .bubble, .fish2").length) return;
+    if ($(event.target).closest(".fish1, .bubble, .fish2, .chomper").length) return;
 
     const { clientX, clientY } = event;
     const fishImage = $(".fish");
@@ -147,4 +147,99 @@ $(document).ready(function () {
     clearTimeout(deflateTimer);
     deflateTimer = setTimeout(decreasesize, 2000);
   });
+
+  // CHOMPER - chases bubbles, eats them, gets fat and burps
+  var chomper = $(".chomper");
+  var chomperX = 0;
+  var chomperY = 100;
+  var chomperDir = 1; // 1 = facing right, -1 = facing left
+  var bubblesEaten = 0;
+  var chomperResting = false;
+
+  // browsers block sounds until the user has clicked something, ignore that
+  function playSound(sound) {
+    sound.currentTime = 0;
+    var p = sound.play();
+    if (p) p.catch(function () {});
+  }
+
+  function floatText(text, x, y) {
+    $("<div class='floating-text'></div>")
+      .text(text)
+      .css({ left: x, top: y })
+      .appendTo("body")
+      .animate({ top: y - 100, opacity: 0 }, 1500, function () {
+        $(this).remove();
+      });
+  }
+
+  function nearestBubble() {
+    var best = null;
+    var bestDist = Infinity;
+    $(".bubble:visible").each(function () {
+      var o = $(this).offset();
+      var d = Math.hypot(o.left - chomperX, o.top - chomperY);
+      if (d < bestDist) {
+        best = this;
+        bestDist = d;
+      }
+    });
+    return best;
+  }
+
+  function eatBubble(bubble) {
+    $(bubble).hide();
+    playSound(audio2);
+    bubblesEaten++;
+    floatText("nom!", chomperX + 30, chomperY - 30);
+    if (bubblesEaten === 3) burp();
+  }
+
+  function burp() {
+    chomperResting = true;
+    setTimeout(function () { // a little pause to look really full
+      playSound(audio4);
+      floatText("BURP!", chomperX, chomperY - 50);
+      bubblesEaten = 0;
+      setTimeout(function () {
+        chomperResting = false;
+      }, 3000);
+    }, 800);
+  }
+
+  // tickling him makes him burp early (or just annoys him)
+  chomper.click(function () {
+    if (bubblesEaten > 0 && !chomperResting) burp();
+    else floatText("hey!", chomperX + 20, chomperY - 30);
+  });
+
+  function chomperLoop() {
+    if (!chomperResting) {
+      var target = nearestBubble();
+      if (target) {
+        var o = $(target).offset();
+        var dx = o.left + 40 - (chomperX + 50);
+        var dy = o.top + 40 - (chomperY + 35);
+        var dist = Math.hypot(dx, dy);
+        if (dist < 40) {
+          eatBubble(target);
+        } else {
+          var speed = 3.5 - bubblesEaten * 0.8; // fatter = slower
+          chomperX += dx / dist * speed;
+          chomperY += dy / dist * speed;
+          if (Math.abs(dx) > 5) chomperDir = dx > 0 ? 1 : -1;
+        }
+      }
+    }
+
+    var size = 1 + bubblesEaten * 0.35;
+    var wiggle = Math.sin(Date.now() / 120) * 6;
+    chomper.css({
+      left: chomperX,
+      top: chomperY,
+      transform: `scale(${chomperDir * size}, ${size}) rotate(${wiggle}deg)`
+    });
+    requestAnimationFrame(chomperLoop);
+  }
+  chomperLoop();
 });

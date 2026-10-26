@@ -45,3 +45,23 @@ body {
 {
 	display: none;
 }
+
+.chomper
+{
+	width: 100px;
+	height: 69px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+
+.floating-text
+{
+	position: absolute;
+	font: bold 28px "Comic Sans MS", cursive;
+	color: #fff;
+	text-shadow: 2px 2px 0 #000;
+	pointer-events: none;
+	white-space: nowrap;
+}
